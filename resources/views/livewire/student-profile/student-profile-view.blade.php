@@ -1,0 +1,3 @@
+<div>
+    Student Profile
+</div>

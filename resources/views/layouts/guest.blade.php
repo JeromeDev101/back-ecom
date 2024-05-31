@@ -17,9 +17,20 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+    <body class="relative">
+        <!-- Top Left Logo -->
+        <img src="{{asset('images/ceit_logo.png')}}" alt="CEIT Logo" class="hidden md:block opacity-75 absolute z-10 top-4 left-4 w-16 h-16 md:w-24 md:h-24">
+
+        <!-- Top Right Logo -->
+        <img src="{{asset('images/cvsu_logo.png')}}" alt="CVSU Logo" class="hidden md:block opacity-75 absolute z-10 top-4 right-4 w-16 h-16 md:w-24 md:h-24">
+
+        <div class="relative min-h-screen">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url({{asset('images/bg1.jpeg')}});">
+                <div class="absolute inset-0 bg-gradient-to-t from-green-900 to-green-200 opacity-70"></div>
+            </div>
+            <div class="relative font-sans text-gray-900 antialiased" >
+                {{ $slot }}
+            </div>
         </div>
 
         @livewireScripts

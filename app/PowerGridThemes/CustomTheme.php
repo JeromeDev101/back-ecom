@@ -17,7 +17,7 @@ use PowerComponents\LivewirePowerGrid\Themes\Components\{Actions,
     SearchBox,
     Table};
 
-use PowerComponents\LivewirePowerGrid\Themes\Theme;
+use \PowerComponents\LivewirePowerGrid\Themes\Theme;
 use \PowerComponents\LivewirePowerGrid\Themes\Tailwind;
 
 class CustomTheme extends Tailwind
@@ -28,7 +28,7 @@ class CustomTheme extends Tailwind
     {
         return Theme::table('min-w-full dark:bg-slate-800')
             ->div('rounded-t-lg relative border-x border-t border-pg-primary-200 dark:bg-pg-primary-700 dark:border-pg-primary-600')
-            ->thead('shadow-sm rounded-t-lg bg-pg-primary-200 dark:bg-gray-900')
+            ->thead('shadow-sm rounded-t-lg bg-green-500 dark:bg-gray-900')
             ->thAction('!font-bold')
             ->tdAction('')
             ->tr('')
