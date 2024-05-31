@@ -2,5 +2,9 @@ import './bootstrap';
 import 'flowbite';
 
 // Livewire powergrid
-import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
-import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css'
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
+import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css';
+
+// Tom select
+import TomSelect from "tom-select";
+window.TomSelect = TomSelect;

@@ -1,4 +1,4 @@
-<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+<nav class="fixed top-0 z-50 w-full bg-gradient-to-r from-green-100 to-green-300 border-b border-green-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
 
@@ -10,7 +10,8 @@
                 </svg>
             </button>
             <a href="#" class="flex ms-2 md:me-24">
-                <span class="self-center text-xl font-semibold sm:text-2xl text-green-700 whitespace-nowrap dark:text-white">Product Management</span>
+                <img src="{{asset('images/ceit_logo.png')}}" class="h-8 me-3" alt="FlowBite Logo" />
+                <span class="self-center text-lg text-green-600 whitespace-nowrap hidden md:block">College of Engineering and Information Technology</span>
             </a>
             </div>
 
