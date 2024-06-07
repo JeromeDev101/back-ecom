@@ -8,6 +8,8 @@ class FacultyStaffView extends Component
 {
     public function render()
     {
-        return view('livewire.faculty-staff.faculty-staff-view')->layout('layouts.app');
+        return view('livewire.faculty-staff.faculty-staff-view')
+        ->layout('layouts.app')
+        ->title('CEIT - Faculty Staff');
     }
 }
