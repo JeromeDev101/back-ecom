@@ -8,6 +8,8 @@ class InfrastructureDevelopmentView extends Component
 {
     public function render()
     {
-        return view('livewire.infrastructure-development.infrastructure-development-view')->layout('layouts.app');
+        return view('livewire.infrastructure-development.infrastructure-development-view')
+            ->layout('layouts.app')
+            ->title('CEIT - Infrastructure Development');
     }
 }

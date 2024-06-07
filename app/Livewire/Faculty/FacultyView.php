@@ -8,6 +8,8 @@ class FacultyView extends Component
 {
     public function render()
     {
-        return view('livewire.faculty.faculty-view')->layout('layouts.app');
+        return view('livewire.faculty.faculty-view')
+            ->layout('layouts.app')
+            ->title('CEIT - Faculty Profile');
     }
 }

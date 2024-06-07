@@ -8,6 +8,8 @@ class StudentProfileView extends Component
 {
     public function render()
     {
-        return view('livewire.student-profile.student-profile-view')->layout('layouts.app');
+        return view('livewire.student-profile.student-profile-view')
+            ->layout('layouts.app')
+            ->title('CEIT - Student Profile');
     }
 }
