@@ -1,3 +1,3 @@
 <div>
-    Curriculum
+    <x-page-header>Curriculum</x-page-header>
 </div>

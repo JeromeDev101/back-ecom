@@ -22,7 +22,7 @@
         <x-sidemenu />
 
         <div class="p-4 sm:ml-80">
-            <div class="p-4 rounded-lg dark:border-gray-700 mt-14 bg-gray-50">
+            <div class="p-4 mt-14">
                 {{ $slot }}
             </div>
         </div>

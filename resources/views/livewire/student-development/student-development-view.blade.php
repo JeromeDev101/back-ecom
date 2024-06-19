@@ -1,3 +1,3 @@
 <div>
-    Student Development
+    <x-page-header>Student Development</x-page-header>
 </div>
