@@ -1,3 +1,3 @@
 <div>
-    Linkages
+    <x-page-header>Linkages</x-page-header>
 </div>

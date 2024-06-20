@@ -24,11 +24,6 @@ final class ProductTable extends PowerGridComponent
     {
         config(['livewire-powergrid.filter' => 'outside']);
     }
-
-    public function template(): ?string
-    {
-        return \App\PowerGridThemes\CustomTheme::class;
-    }
     public function setUp(): array
     {
         $this->showCheckBox();
