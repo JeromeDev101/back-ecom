@@ -15,14 +15,15 @@
             </li>
         </ul>
         <div id="defaultTabContent">
+
             <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="roles" role="tabpanel" aria-labelledby="roles-tab">
-                @can('create roles and permission')
+                @can('roles-and-permission-create')
                     <x-custom-button size="sm" color="green" href="{{route('roles.create')}}">Add Role</x-custom-button>
                 @endcan
                 <livewire:roles-table/>
             </div>
             <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="permissions" role="tabpanel" aria-labelledby="permission-tab">
-                @can('create roles and permission')
+                @can('roles-and-permission-create')
                     <x-custom-button size="sm" color="green">Add Permission</x-custom-button>
                 @endcan
                 <livewire:permissions-table/>

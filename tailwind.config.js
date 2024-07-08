@@ -13,7 +13,8 @@ export default {
         './resources/views/**/*.blade.php',
         './app/Livewire/**/*Table.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
-        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php'
+        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
+        './vendor/masmerise/livewire-toaster/resources/views/*.blade.php'
     ],
     presets: [
         require("./vendor/power-components/livewire-powergrid/tailwind.config.js"),
@@ -25,7 +26,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                "pg-primary": colors.emerald,
+                "pg-primary": colors.zinc,
             },
         },
     },

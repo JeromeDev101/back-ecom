@@ -5,6 +5,9 @@ import 'flowbite';
 import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
 import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css';
 
+// Toaster
+import '../../vendor/masmerise/livewire-toaster/resources/js';
+
 // Tom select
 import TomSelect from "tom-select";
 import { initFlowbite } from 'flowbite';

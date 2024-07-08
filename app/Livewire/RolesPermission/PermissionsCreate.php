@@ -3,6 +3,9 @@
 namespace App\Livewire\RolesPermission;
 
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
+
+#[Lazy()]
 
 class PermissionsCreate extends Component
 {

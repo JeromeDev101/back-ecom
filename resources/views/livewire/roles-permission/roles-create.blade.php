@@ -5,8 +5,12 @@
         <form wire:submit.prevent="save">
             <div class="mb-5">
                 <x-label>Role name</x-label>
-                <x-input class="w-full" required wire:model="name" />
-
+                <x-input class="w-full" wire:model="name" />
+                @error('name')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
             <div class="mb-5">
                 <x-custom-button type="submit">Save</x-custom-button>
