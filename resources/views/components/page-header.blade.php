@@ -1,6 +1,6 @@
 @props(['back' => false, 'link' => '#'])
 
-<h4 class="text-green-900 text-2xl mb-4 flex items-center">
+<h4 class="text-green-900 text-2xl mb-5 flex items-center">
     @if ($back)
         <div class="mr-3">
             <a href="{{$link}}" wire:navigate title="Back">

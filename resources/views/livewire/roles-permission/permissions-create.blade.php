@@ -17,7 +17,7 @@
                 @enderror
                 <input type="hidden" wire:model="name">
 
-                @if ($name)
+                @if ($temp_name)
                     <div class="p-4 my-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
                         <b>Sample output slug:</b> <br/>
 

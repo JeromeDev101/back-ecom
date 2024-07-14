@@ -2,6 +2,8 @@
 
 use App\Livewire\Curriculum\CurriculumView;
 use App\Livewire\EventsAccomplish\EventsAccomplishView;
+use App\Livewire\Faculty\FacultyCreate;
+use App\Livewire\Faculty\FacultyEdit;
 use App\Livewire\Faculty\FacultyView;
 use App\Livewire\FacultyStaff\FacultyStaffView;
 use App\Livewire\InfrastructureDevelopment\InfrastructureDevelopmentView;
@@ -32,23 +34,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/products/edit/{id}', ProductEdit::class)->name('products.edit');
 
     // Roles and Permission
-    Route::group(['middleware' =>
-        ['can:read roles and permission, create roles and permission, update roles and permission, delete roles and permission']]
-        , function() {
-        Route::get('/roles-and-permission', RolesPermissionView::class)->name('roles-permission.index');
-        Route::get('/roles-and-permission/role/create', RolesCreate::class)->name('roles.create');
-        Route::get('/roles-and-permission/role/edit/{id}', RolesEdit::class)->name('roles.edit');
-        Route::get('/roles-and-permission/permission/create', PermissionsCreate::class)->name('permissions.create');
-        Route::get('/roles-and-permission/permission/edit/{id}', PermissionsEdit::class)->name('permissions.edit');
-    });
-
+    Route::get('/roles-and-permission', RolesPermissionView::class)->name('roles-permission.index');
+    Route::get('/roles-and-permission/role/create', RolesCreate::class)->name('roles.create');
+    Route::get('/roles-and-permission/role/edit/{id}', RolesEdit::class)->name('roles.edit');
+    Route::get('/roles-and-permission/permission/create', PermissionsCreate::class)->name('permissions.create');
+    Route::get('/roles-and-permission/permission/edit/{id}', PermissionsEdit::class)->name('permissions.edit');
 
     // Faculty
-    Route::group(['middleware' =>
-        ['can:read faculty profile, create faculty profile, update faculty profile, delete faculty profile']]
-        , function() {
-        Route::get('/faculty-profile', FacultyView::class)->name('faculty.index');
-    });
+    Route::get('/faculty-profile', FacultyView::class)->name('faculty.index');
+    Route::get('/faculty-profile/create', FacultyCreate::class)->name('faculty.create');
+    Route::get('/faculty-profile/edit/{id}', FacultyEdit::class)->name('faculty.edit');
 
     // Curriculum
     Route::group(['middleware' =>
