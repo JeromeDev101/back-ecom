@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\CountrySeeder;
+use Database\Seeders\ProgramSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,9 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RolesAndPermissionsSeeder::class,
-            ProductSeeder::class,
-            CategorySeeder::class,
-            CategoryProductSeeder::class,
+            ProgramSeeder::class,
+            CountrySeeder::class,
         ]);
     }
 }
