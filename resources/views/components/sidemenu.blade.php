@@ -1,7 +1,7 @@
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-80 h-screen pt-20 transition-transform -translate-x-full bg-green-100 border-r border-green-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 h-screen pt-20 transition-transform -translate-x-full bg-green-100 border-r border-green-200 w-80 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-gradient-to-t from-green-300 to-green-100">
 
-        @canany(['read roles and permission', 'create roles and permission', 'update roles and permission', 'delete roles and permission'])
+
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="{{ route('roles-permission.index') }}" wire:navigate class="group flex items-center p-2
@@ -18,11 +18,11 @@
                     </a>
                 </li>
             </ul>
-        @endcanany
+
 
         <ul class="space-y-2 font-medium {{ auth()->user()->canany(['read roles and permission', 'create roles and permission', 'update roles and permission', 'delete roles and permission']) ? 'pt-4 mt-4 border-t border-green-200':'' }} ">
 
-            @canany(['read faculty profile', 'create faculty profile', 'update faculty profile', 'delete faculty profile'])
+
                 <li>
                     <a href="{{ route('faculty.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('faculty.index') || request()->is('faculty-profile/*') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -32,9 +32,9 @@
                         <span class="ms-3">Faculty Profile</span>
                     </a>
                 </li>
-            @endcanany
 
-            @canany(['read curriculum', 'create curriculum', 'update curriculum', 'delete curriculum'])
+
+
                 <li>
                     <a href="{{ route('curriculum.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('curriculum.index') || request()->is('curriculum/*') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -45,9 +45,9 @@
                     </a>
 
                 </li>
-            @endcanany
 
-            @canany(['read student profile', 'create student profile', 'update student profile', 'delete student profile'])
+
+
                 <li>
                     <a href="{{ route('student-profile.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('student-profile.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group" >
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -57,9 +57,9 @@
                         <span class="ms-3">Student Profile</span>
                     </a>
                 </li>
-            @endcanany
 
-            @canany(['read faculty staff', 'create faculty staff', 'update faculty staff', 'delete faculty staff'])
+
+
                 <li>
                     <a href="{{ route('faculty-staff.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('faculty-staff.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -69,9 +69,7 @@
                         <span class="ms-3">Faculty Staff</span>
                     </a>
                 </li>
-            @endcanany
 
-            @canany(['read student dev', 'create student dev', 'update student dev', 'delete student dev'])
                 <li>
                     <a href="{{ route('student-development.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('student-development.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -81,9 +79,9 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Student Development</span>
                     </a>
                 </li>
-            @endcanany
 
-            @canany(['read research ext', 'create research ext', 'update research ext', 'delete research ext'])
+
+
                 <li>
                     <a href="{{ route('research-extension.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('research-extension.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -93,9 +91,7 @@
                         <span class="ms-3">Research and Extension</span>
                     </a>
                 </li>
-            @endcanany
 
-            @canany(['read linkages', 'create linkages', 'update linkages', 'delete linkages'])
                 <li>
                     <a href="{{ route('linkages.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('linkages.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -106,9 +102,7 @@
                     </a>
 
                 </li>
-            @endcanany
 
-            @canany(['read infra dev', 'create infra dev', 'update infra dev', 'delete infra dev'])
                 <li>
                     <a href="{{ route('infrastructure-development.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('infrastructure-development.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -118,9 +112,7 @@
                         <span class="ms-3">Infastructure Development</span>
                     </a>
                 </li>
-            @endcanany
 
-            @canany(['read events accomplish', 'create events accomplish', 'update events accomplish', 'delete events accomplish'])
                 <li>
                     <a href="{{ route('events-accomplishment.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('events-accomplishment.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -133,7 +125,6 @@
                         <span class="ms-3">Events and Accomplishments</span>
                     </a>
                 </li>
-            @endcanany
 
          </ul>
     </div>
