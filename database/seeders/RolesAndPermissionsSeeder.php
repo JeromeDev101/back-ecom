@@ -18,55 +18,55 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
-        Permission::create(['name' => 'read roles and permission']);
-        Permission::create(['name' => 'create roles and permission']);
-        Permission::create(['name' => 'update roles and permission']);
-        Permission::create(['name' => 'delete roles and permission']);
+        Permission::create(['name' => 'roles-and-permission-create']);
+        Permission::create(['name' => 'roles-and-permission-read']);
+        Permission::create(['name' => 'roles-and-permission-update']);
+        Permission::create(['name' => 'roles-and-permission-delete']);
 
-        Permission::create(['name' => 'read faculty profile']);
-        Permission::create(['name' => 'create faculty profile']);
-        Permission::create(['name' => 'update faculty profile']);
-        Permission::create(['name' => 'delete faculty profile']);
+        Permission::create(['name' => 'faculty-profile-create']);
+        Permission::create(['name' => 'faculty-profile-read']);
+        Permission::create(['name' => 'faculty-profile-update']);
+        Permission::create(['name' => 'faculty-profile-delete']);
 
-        Permission::create(['name' => 'read curriculum']);
-        Permission::create(['name' => 'create curriculum']);
-        Permission::create(['name' => 'update curriculum']);
-        Permission::create(['name' => 'delete curriculum']);
+        Permission::create(['name' => 'curriculum-create']);
+        Permission::create(['name' => 'curriculum-read']);
+        Permission::create(['name' => 'curriculum-update']);
+        Permission::create(['name' => 'curriculum-delete']);
 
-        Permission::create(['name' => 'read student profile']);
-        Permission::create(['name' => 'create student profile']);
-        Permission::create(['name' => 'update student profile']);
-        Permission::create(['name' => 'delete student profile']);
+        Permission::create(['name' => 'student-profile-create']);
+        Permission::create(['name' => 'student-profile-read']);
+        Permission::create(['name' => 'student-profile-update']);
+        Permission::create(['name' => 'student-profile-delete']);
 
-        Permission::create(['name' => 'read faculty staff']);
-        Permission::create(['name' => 'create faculty staff']);
-        Permission::create(['name' => 'update faculty staff']);
-        Permission::create(['name' => 'delete faculty staff']);
+        Permission::create(['name' => 'faculty-staff-create']);
+        Permission::create(['name' => 'faculty-staff-read']);
+        Permission::create(['name' => 'faculty-staff-update']);
+        Permission::create(['name' => 'faculty-staff-delete']);
 
-        Permission::create(['name' => 'read student dev']);
-        Permission::create(['name' => 'create student dev']);
-        Permission::create(['name' => 'update student dev']);
-        Permission::create(['name' => 'delete student dev']);
+        Permission::create(['name' => 'student-dev-create']);
+        Permission::create(['name' => 'student-dev-read']);
+        Permission::create(['name' => 'student-dev-update']);
+        Permission::create(['name' => 'student-dev-delete']);
 
-        Permission::create(['name' => 'read research ext']);
-        Permission::create(['name' => 'create research ext']);
-        Permission::create(['name' => 'update research ext']);
-        Permission::create(['name' => 'delete research ext']);
+        Permission::create(['name' => 'research-ext-create']);
+        Permission::create(['name' => 'research-ext-read']);
+        Permission::create(['name' => 'research-ext-update']);
+        Permission::create(['name' => 'research-ext-delete']);
 
-        Permission::create(['name' => 'read linkages']);
-        Permission::create(['name' => 'create linkages']);
-        Permission::create(['name' => 'update linkages']);
-        Permission::create(['name' => 'delete linkages']);
+        Permission::create(['name' => 'linkages-create']);
+        Permission::create(['name' => 'linkages-read']);
+        Permission::create(['name' => 'linkages-update']);
+        Permission::create(['name' => 'linkages-delete']);
 
-        Permission::create(['name' => 'read infra dev']);
-        Permission::create(['name' => 'create infra dev']);
-        Permission::create(['name' => 'update infra dev']);
-        Permission::create(['name' => 'delete infra dev']);
+        Permission::create(['name' => 'infra-dev-create']);
+        Permission::create(['name' => 'infra-dev-read']);
+        Permission::create(['name' => 'infra-dev-update']);
+        Permission::create(['name' => 'infra-dev-delete']);
 
-        Permission::create(['name' => 'read events accomplish']);
-        Permission::create(['name' => 'create events accomplish']);
-        Permission::create(['name' => 'update events accomplish']);
-        Permission::create(['name' => 'delete events accomplish']);
+        Permission::create(['name' => 'events-accomplish-create']);
+        Permission::create(['name' => 'events-accomplish-read']);
+        Permission::create(['name' => 'events-accomplish-update']);
+        Permission::create(['name' => 'events-accomplish-delete']);
 
 
         // create roles and assign created permissions
