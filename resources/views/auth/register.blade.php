@@ -22,12 +22,16 @@
                         </div>
                         <div>
                             <label for="role">Role</label>
-                            <select name="role" id="role" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                <option value=""></option>
-                                @foreach (Spatie\Permission\Models\Role::get() as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                @endforeach
-                            </select>
+                            @php
+                                $options = [];
+                                foreach (Spatie\Permission\Models\Role::get() as $role) {
+                                    $options[] = [
+                                        'value' => $role->name,
+                                        'label' => $role->name,
+                                    ];
+                                }
+                            @endphp
+                            <x-select name="role" id="role" :options="$options" />
                         </div>
                         <div>
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>

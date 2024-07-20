@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
-            $table->string('emp_status');
-            $table->string('educ_attainment')->nullable();
+            $table->string('email');
+            $table->integer('nature_of_appointment_id');
+            $table->integer('educational_attainment_id');
             $table->string('gender')->nullable();
-            $table->string('academic_rank')->nullable();
+            $table->integer('academic_rank_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

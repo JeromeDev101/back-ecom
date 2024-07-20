@@ -92,7 +92,7 @@ final class PermissionsTable extends PowerGridComponent
             Button::add('edit')
                 ->slot('Edit')
                 ->id()
-                ->can(allowed: auth()->user()->hasPermissionTo('update roles and permission'))
+                ->can(allowed: auth()->user()->hasPermissionTo('roles-and-permission-update'))
                 ->render(function ($role) {
                     return Blade::render(<<<HTML
                     <x-custom-button size="xs" color="yellow" href="{{ route('permissions.edit', ['id' => $role->id]) }}">Edit</x-custom-button>
@@ -102,7 +102,7 @@ final class PermissionsTable extends PowerGridComponent
             Button::add('delete')
                 ->slot('Delete')
                 ->id()
-                ->can(allowed: auth()->user()->hasPermissionTo('delete roles and permission'))
+                ->can(allowed: auth()->user()->hasPermissionTo('roles-and-permission-delete'))
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
                 ->dispatch('delete:permission', ['rowId' => $row->id]),
         ];

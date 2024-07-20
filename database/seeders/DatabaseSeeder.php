@@ -7,7 +7,10 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\CountrySeeder;
 use Database\Seeders\ProgramSeeder;
+use Database\Seeders\AcademicRankSeeder;
+use Database\Seeders\NatureOfAppointmentSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\EducationalAttainmentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +23,9 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             ProgramSeeder::class,
             CountrySeeder::class,
+            AcademicRankSeeder::class,
+            NatureOfAppointmentSeeder::class,
+            EducationalAttainmentSeeder::class,
         ]);
     }
 }

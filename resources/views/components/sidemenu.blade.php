@@ -20,7 +20,7 @@
             </ul>
 
 
-        <ul class="space-y-2 font-medium {{ auth()->user()->canany(['read roles and permission', 'create roles and permission', 'update roles and permission', 'delete roles and permission']) ? 'pt-4 mt-4 border-t border-green-200':'' }} ">
+        <ul class="space-y-2 font-medium {{ auth()->user()->canany(['roles-and-permission-update', 'roles-and-permission-create', 'roles-and-permission-delete', 'roles-and-permission-read']) ? 'pt-4 mt-4 border-t border-green-200':'' }} ">
 
 
                 <li>
