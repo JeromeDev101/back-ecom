@@ -37,7 +37,7 @@
                 <div>
                     <x-label :required="true">Email</x-label>
                     <x-input type="email" wire:model="faculty.email" />
-                    @error('faculty.last_name')
+                    @error('faculty.email')
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                             {{ $message }}
                         </p>

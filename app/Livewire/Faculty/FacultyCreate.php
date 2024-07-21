@@ -42,8 +42,9 @@ class FacultyCreate extends Component
         return [
             'faculty.first_name' => 'required',
             'faculty.last_name' => 'required',
+            'faculty.middle_name' => '',
             'faculty.nature_of_appointment_id' => 'required',
-            'faculty.email' => 'required',
+            'faculty.email' => 'required|unique:faculties,email',
             'faculty.gender' => 'required',
             'faculty.academic_rank_id' => 'required',
             'faculty.educational_attainment_id' => 'required'
@@ -57,6 +58,7 @@ class FacultyCreate extends Component
             'faculty.last_name.required' => 'Last name is required',
             'faculty.nature_of_appointment_id.required' => 'Nature of appointment is required',
             'faculty.email.required' => 'Email is required',
+            'faculty.email.unique' => 'Email is already exist',
             'faculty.gender.required' => 'Gender is required',
             'faculty.academic_rank_id.required' => 'Academic rank is required',
             'faculty.educational_attainment_id.required' => 'Educational attainment is required'
