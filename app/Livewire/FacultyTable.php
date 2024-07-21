@@ -38,7 +38,16 @@ final class FacultyTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return DB::table('faculties')->whereNull('deleted_at');
+        $columns = [
+            'faculties.*',
+            'educational_attainments.name as educ_attain_name',
+            'nature_of_appointments.name as nature_of_appointment_name',
+        ];
+        return DB::table('faculties')
+            ->select($columns)
+            ->leftJoin('educational_attainments', 'faculties.educational_attainment_id' , '=', 'educational_attainments.id')
+            ->leftJoin('nature_of_appointments', 'faculties.nature_of_appointment_id' , '=', 'nature_of_appointments.id')
+            ->whereNull('faculties.deleted_at');
     }
 
     public function fields(): PowerGridFields
@@ -48,12 +57,9 @@ final class FacultyTable extends PowerGridComponent
             ->add('first_name')
             ->add('middle_name')
             ->add('last_name')
-            ->add('emp_status')
-            ->add('educ_attainment')
+            ->add('educ_attain_name')
+            ->add('nature_of_appointment_name')
             ->add('gender')
-            ->add('academic_rank')
-            ->add('deleted_at')
-            ->add('created_at')
             ->add('updated_at');
     }
 
@@ -73,7 +79,7 @@ final class FacultyTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Employment Status', 'emp_status')
+            Column::make('Nature of Appointment', 'nature_of_appointment_name')
                 ->sortable()
                 ->searchable(),
 
