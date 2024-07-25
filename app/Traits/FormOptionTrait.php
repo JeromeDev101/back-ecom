@@ -3,8 +3,9 @@
 namespace App\Traits;
 
 use App\Models\AcademicRank;
-use App\Models\EducationalAttainment;
+use Spatie\Permission\Models\Role;
 use App\Models\NatureOfAppointment;
+use App\Models\EducationalAttainment;
 
 trait FormOptionTrait {
     public function genderOptions()
@@ -19,6 +20,21 @@ trait FormOptionTrait {
                 'label' => 'Female'
             ]
         ];
+    }
+
+    public function roleOptions()
+    {
+        $roles = Role::all();
+        $options = [];
+
+        foreach($roles as $role) {
+            $options[] = [
+                'value' => $role['name'],
+                'label' => $role['name']
+            ];
+        }
+
+        return $options;
     }
 
     public function educAttainmentOptions()
