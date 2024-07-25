@@ -1,6 +1,9 @@
 <?php
 
 use App\Livewire\Curriculum\CurriculumView;
+use App\Livewire\Department\Department;
+use App\Livewire\Department\Pages\Create as DepartmentCreate;
+use App\Livewire\Department\Pages\Edit as DepartmentEdit;
 use App\Livewire\EventsAccomplish\EventsAccomplishView;
 use App\Livewire\Faculty\FacultyCreate;
 use App\Livewire\Faculty\FacultyEdit;
@@ -11,6 +14,9 @@ use App\Livewire\Linkage\LinkageView;
 use App\Livewire\Products\ProductCreate;
 use App\Livewire\Products\ProductEdit;
 use App\Livewire\Products\ProductView;
+use App\Livewire\Program\Program;
+use App\Livewire\Program\Pages\Create as ProgramCreate;
+use App\Livewire\Program\Pages\Edit as ProgramEdit;
 use App\Livewire\ResearchExtension\ResearchExtensionView;
 use App\Livewire\RolesPermission\PermissionsCreate;
 use App\Livewire\RolesPermission\PermissionsEdit;
@@ -19,6 +25,9 @@ use App\Livewire\RolesPermission\RolesEdit;
 use App\Livewire\RolesPermission\RolesPermissionView;
 use App\Livewire\StudentDevelopment\StudentDevelopmentView;
 use App\Livewire\StudentProfile\StudentProfileView;
+use App\Livewire\User\User;
+use App\Livewire\User\Pages\Create as UserCreate;
+use App\Livewire\User\Pages\Edit as UserEdit;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,6 +36,25 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
 ->group(function () {
+
+    // Settings
+    Route::prefix('settings')->group(function () {
+
+        // Department
+        Route::get('/departments', Department::class)->name('departments.index');
+        Route::get('/departments/create', DepartmentCreate::class)->name('departments.create');
+        Route::get('/departments/edit/{id}', DepartmentEdit::class)->name('departments.edit');
+
+        // Program
+        Route::get('/programs', Program::class)->name('programs.index');
+        Route::get('/programs/create', ProgramCreate::class)->name('programs.create');
+        Route::get('/programs/edit/{id}', ProgramEdit::class)->name('programs.edit');
+    });
+
+    // Users
+    Route::get('/users', User::class)->name('users.index');
+    Route::get('/users/create', UserCreate::class)->name('users.create');
+    Route::get('/users/edit/{id}', UserEdit::class)->name('users.edit');
 
     // Products
     Route::get('/products', ProductView::class)->name('products.index');

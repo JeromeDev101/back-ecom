@@ -1,27 +1,94 @@
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 h-screen pt-20 transition-transform -translate-x-full bg-green-100 border-r border-green-200 w-80 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-gradient-to-t from-green-300 to-green-100">
 
+        <ul class="space-y-2 font-medium">
+            <li>
+                <a href="{{ route('roles-permission.index') }}" wire:navigate class="group flex items-center p-2
+                    {{
+                        request()->is('roles-and-permission') || request()->is('roles-and-permission/*')
+                        ? 'text-green-50 bg-green-500' : ''
+                    }}
+                        rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
+                    <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M17 10v1.126c.367.095.714.24 1.032.428l.796-.797 1.415 1.415-.797.796c.188.318.333.665.428 1.032H21v2h-1.126c-.095.367-.24.714-.428 1.032l.797.796-1.415 1.415-.796-.797a3.979 3.979 0 0 1-1.032.428V20h-2v-1.126a3.977 3.977 0 0 1-1.032-.428l-.796.797-1.415-1.415.797-.796A3.975 3.975 0 0 1 12.126 16H11v-2h1.126c.095-.367.24-.714.428-1.032l-.797-.796 1.415-1.415.796.797A3.977 3.977 0 0 1 15 11.126V10h2Zm.406 3.578.016.016c.354.358.574.85.578 1.392v.028a2 2 0 0 1-3.409 1.406l-.01-.012a2 2 0 0 1 2.826-2.83ZM5 8a4 4 0 1 1 7.938.703 7.029 7.029 0 0 0-3.235 3.235A4 4 0 0 1 5 8Zm4.29 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h6.101A6.979 6.979 0 0 1 9 15c0-.695.101-1.366.29-2Z" clip-rule="evenodd"/>
+                    </svg>
 
-            <ul class="space-y-2 font-medium">
-                <li>
-                    <a href="{{ route('roles-permission.index') }}" wire:navigate class="group flex items-center p-2
-                        {{
-                            request()->is('roles-and-permission') || request()->is('roles-and-permission/*')
-                            ? 'text-green-50 bg-green-500' : ''
-                        }}
-                         rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
-                        <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M17 10v1.126c.367.095.714.24 1.032.428l.796-.797 1.415 1.415-.797.796c.188.318.333.665.428 1.032H21v2h-1.126c-.095.367-.24.714-.428 1.032l.797.796-1.415 1.415-.796-.797a3.979 3.979 0 0 1-1.032.428V20h-2v-1.126a3.977 3.977 0 0 1-1.032-.428l-.796.797-1.415-1.415.797-.796A3.975 3.975 0 0 1 12.126 16H11v-2h1.126c.095-.367.24-.714.428-1.032l-.797-.796 1.415-1.415.796.797A3.977 3.977 0 0 1 15 11.126V10h2Zm.406 3.578.016.016c.354.358.574.85.578 1.392v.028a2 2 0 0 1-3.409 1.406l-.01-.012a2 2 0 0 1 2.826-2.83ZM5 8a4 4 0 1 1 7.938.703 7.029 7.029 0 0 0-3.235 3.235A4 4 0 0 1 5 8Zm4.29 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h6.101A6.979 6.979 0 0 1 9 15c0-.695.101-1.366.29-2Z" clip-rule="evenodd"/>
-                        </svg>
+                    <span class="ms-3">Roles and Permission</span>
+                </a>
+            </li>
 
-                        <span class="ms-3">Roles and Permission</span>
-                    </a>
-                </li>
-            </ul>
+            <li>
+                <a href="{{ route('users.index') }}" wire:navigate class="group flex items-center p-2
+                    {{
+                        request()->is('users') || request()->is('users/*')
+                        ? 'text-green-50 bg-green-500' : ''
+                    }}
+                        rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
+                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+                    </svg>
 
 
-        <ul class="space-y-2 font-medium {{ auth()->user()->canany(['roles-and-permission-update', 'roles-and-permission-create', 'roles-and-permission-delete', 'roles-and-permission-read']) ? 'pt-4 mt-4 border-t border-green-200':'' }} ">
+                    <span class="ms-3">Users</span>
+                </a>
+            </li>
 
+            <li>
+                <button type="button" class="flex items-center w-full p-2 transition duration-75 rounded-lg group dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700"
+                    aria-controls="dropdown-example" data-collapse-toggle="dropdown-example" >
+
+                    <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13v-2a1 1 0 0 0-1-1h-.757l-.707-1.707.535-.536a1 1 0 0 0 0-1.414l-1.414-1.414a1 1 0 0 0-1.414 0l-.536.535L14 4.757V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.757l-1.707.707-.536-.535a1 1 0 0 0-1.414 0L4.929 6.343a1 1 0 0 0 0 1.414l.536.536L4.757 10H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.757l.707 1.707-.535.536a1 1 0 0 0 0 1.414l1.414 1.414a1 1 0 0 0 1.414 0l.536-.535 1.707.707V20a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.757l1.707-.708.536.536a1 1 0 0 0 1.414 0l1.414-1.414a1 1 0 0 0 0-1.414l-.535-.536.707-1.707H20a1 1 0 0 0 1-1Z"/>
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    </svg>
+
+                    <span class="flex-1 text-left ms-3 rtl:text-right whitespace-nowrap">Settings</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                </button>
+
+                <ul id="dropdown-example" class="{{
+                        request()->is('settings/departments') ||
+                        request()->is('settings/departments/*') ||
+                        request()->is('settings/programs') ||
+                        request()->is('settings/programs/*')
+                        ? '' : 'hidden'
+                    }} py-2 space-y-2">
+                      <li>
+                         <a href="{{ route('departments.index') }}" wire:navigate class="group flex items-center p-2
+                            {{
+                                request()->is('settings/departments') || request()->is('settings/departments/*')
+                                ? 'text-green-50 bg-green-500' : ''
+                            }}
+                            transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Departments</a>
+                      </li>
+                      <li>
+                         <a href="{{ route('programs.index') }}" wire:navigate class="group flex items-center p-2
+                            {{
+                                request()->is('settings/programs') || request()->is('settings/programs/*')
+                                ? 'text-green-50 bg-green-500' : ''
+                            }}
+                            transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Program (Courses)</a>
+                      </li>
+                </ul>
+             </li>
+        </ul>
+
+        @php
+            $list = [
+                'roles-and-permission-update',
+                'roles-and-permission-create',
+                'roles-and-permission-delete',
+                'roles-and-permission-read'
+            ];
+        @endphp
+
+        @if(auth()->user()->canany($list))
+            <hr class="pt-4 mt-4 border-t border-green-300" />
+        @endif
+
+        <ul class="space-y-2 font-medium ">
 
                 <li>
                     <a href="{{ route('faculty.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('faculty.index') || request()->is('faculty-profile/*') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">
