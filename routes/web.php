@@ -11,6 +11,7 @@ use App\Livewire\Faculty\FacultyView;
 use App\Livewire\FacultyStaff\FacultyStaffView;
 use App\Livewire\InfrastructureDevelopment\InfrastructureDevelopmentView;
 use App\Livewire\Linkage\LinkageView;
+use App\Livewire\Notification\Notification;
 use App\Livewire\Products\ProductCreate;
 use App\Livewire\Products\ProductEdit;
 use App\Livewire\Products\ProductView;
@@ -50,6 +51,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
         Route::get('/programs/create', ProgramCreate::class)->name('programs.create');
         Route::get('/programs/edit/{id}', ProgramEdit::class)->name('programs.edit');
     });
+
+    // Notification
+    Route::get('/notifications', Notification::class)->name('notifications.index');
 
     // Users
     Route::get('/users', User::class)->name('users.index');

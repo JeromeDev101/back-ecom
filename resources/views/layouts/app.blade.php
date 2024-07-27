@@ -21,7 +21,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased bg-slate-100">
+    <body class="font-sans antialiased">
         <x-navbar />
         <x-sidemenu />
 
