@@ -22,6 +22,7 @@ class Edit extends Component
     public $is_active;
     public $password_confirmation;
     public $roleOptions;
+    public $activeOptions;
 
     public function mount()
     {
@@ -31,6 +32,7 @@ class Edit extends Component
         $this->is_active = $user->is_active;
         $this->role = $user->getRoleNames()->toArray()[0];
         $this->roleOptions = $this->roleOptions();
+        $this->activeOptions = $this->activeOptions();
     }
 
     public function rules()
@@ -60,6 +62,7 @@ class Edit extends Component
         $user = User::find($this->id);
         $user->name = $this->name;
         $user->email = $this->email;
+        $user->is_active = intval($this->is_active);
         if(!empty($this->password)){
             $user->password = Hash::make($this->password);
         }

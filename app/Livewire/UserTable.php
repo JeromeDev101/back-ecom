@@ -52,6 +52,10 @@ final class UserTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('email')
+            ->add('is_active', function($user) {
+                $badge = $user->is_active ? '<x-badge type="green" label="Active" />':'<x-badge type="red" label="Inactive" />';
+                return Blade::render($badge);
+            })
             ->add('created_at');
     }
 
@@ -64,6 +68,10 @@ final class UserTable extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Email', 'email')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Status', 'is_active')
                 ->sortable()
                 ->searchable(),
 

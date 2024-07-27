@@ -22,6 +22,20 @@ trait FormOptionTrait {
         ];
     }
 
+    public function activeOptions()
+    {
+        return [
+            [
+                'value' => 0,
+                'label' => 'Inactive'
+            ],
+            [
+                'value' => 1,
+                'label' => 'Active'
+            ]
+        ];
+    }
+
     public function roleOptions()
     {
         $roles = Role::all();

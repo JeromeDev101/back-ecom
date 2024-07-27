@@ -37,7 +37,7 @@ class Program extends Component
         $program = ModelsProgram::find($this->id);
         $program->delete();
 
-        $this->flash('success', 'Successfully Deleted', [], 'settings/departments');
+        $this->flash('success', 'Successfully Deleted', [], 'settings/programs');
     }
 
     public function render()

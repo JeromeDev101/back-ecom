@@ -50,6 +50,8 @@ final class ProgramTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
+            ->add('name')
+            ->add('acronym')
             ->add('created_at');
     }
 
@@ -58,9 +60,11 @@ final class ProgramTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Name', 'name')
+                ->searchable()
                 ->sortable(),
 
             Column::make('Acronym', 'acronym')
+                ->searchable()
                 ->sortable(),
 
             Column::make('Created at', 'created_at')

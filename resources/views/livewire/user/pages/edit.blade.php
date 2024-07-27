@@ -63,9 +63,9 @@
                     @enderror
                 </div>
 
-                <div class="pt-5">
-                    {{ $is_active }}
-                    <x-checked-toggle label="{{ $is_active ? 'Active':'Inactive' }}" wire:change="$toggle('is_active')" :checked="$is_active" />
+                <div>
+                    <x-label >Status</x-label>
+                    <x-select wire:model="is_active" :options="$activeOptions" />
                 </div>
             </div>
 
