@@ -3,10 +3,10 @@
 
     <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <form wire:submit.prevent="save">
-            <h4 class="text-teal-500 text-lg">Personal Information</h4>
-            <hr class="mb-4 mt-2" />
+            <h4 class="text-lg text-teal-500">Personal Information</h4>
+            <hr class="mt-2 mb-4" />
 
-            <div class="grid grid-col-3 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid gap-4 grid-col-3 md:grid-cols-2 lg:grid-cols-3">
                 <div>
                     <x-label :required="true">First name</x-label>
                     <x-input wire:model="faculty.first_name" />
@@ -63,10 +63,10 @@
                 </div>
             </div>
 
-            <h4 class="text-teal-500 text-lg mt-5">Educational Information</h4>
-            <hr class="mb-4 mt-2" />
+            <h4 class="mt-5 text-lg text-teal-500">Educational Information</h4>
+            <hr class="mt-2 mb-4" />
 
-            <div class="grid grid-col-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <div class="grid gap-4 grid-col-2 md:grid-cols-2 lg:grid-cols-2">
                 <div>
                     <x-label :required="true">Educational Attainment</x-label>
                     <x-select wire:model="faculty.educational_attainment_id" :options="$educAttainmentOptions" />
