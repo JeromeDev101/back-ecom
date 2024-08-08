@@ -17,7 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
-final class FacultyTable extends PowerGridComponent
+final class AccreditationTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -39,55 +39,49 @@ final class FacultyTable extends PowerGridComponent
     public function datasource(): Builder
     {
         $columns = [
-            'faculties.*',
-            'educational_attainments.name as educ_attain_name',
-            'nature_of_appointments.name as nature_of_appointment_name',
+            'curriculum_accreditations.*',
+            'programs.name as program_name'
         ];
-        return DB::table('faculties')
+        return DB::table('curriculum_accreditations')
             ->select($columns)
-            ->leftJoin('educational_attainments', 'faculties.educational_attainment_id' , '=', 'educational_attainments.id')
-            ->leftJoin('nature_of_appointments', 'faculties.nature_of_appointment_id' , '=', 'nature_of_appointments.id')
-            ->whereNull('faculties.deleted_at');
+            ->leftJoin('programs', 'curriculum_accreditations.program_id' , '=', 'programs.id')
+            ->whereNull('curriculum_accreditations.deleted_at');
+    }
+
+    public function relationSearch(): array
+    {
+        return [];
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('first_name')
-            ->add('middle_name')
-            ->add('last_name')
-            ->add('educ_attain_name')
-            ->add('nature_of_appointment_name')
-            ->add('gender')
-            ->add('updated_at');
+            ->add('program_name')
+            ->add('level')
+            ->add('date_visit')
+            ->add('status')
+            ->add('created_at');
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('First name', 'first_name')
+            Column::make('Program', 'program_name')
+                ->sortable()
+                ->searchable(),
+            Column::make('Level', 'level')
+                ->sortable()
+                ->searchable(),
+            Column::make('Status', 'status')
+                ->sortable()
+                ->searchable(),
+            Column::make('Date held', 'date_visit')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Middle name', 'middle_name')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Last name', 'last_name')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Nature of Appointment', 'nature_of_appointment_name')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Gender', 'gender')
-                ->sortable()
-                ->searchable(),
-            Column::action('Action'),
-
+            Column::action('Action')
         ];
     }
 
@@ -103,19 +97,19 @@ final class FacultyTable extends PowerGridComponent
             Button::add('edit')
                 ->slot('Edit')
                 ->id()
-                ->can(allowed: auth()->user()->hasPermissionTo('faculty-profile-update'))
+                ->can(allowed: auth()->user()->hasPermissionTo('curriculum-update'))
                 ->render(function ($role) {
                     return Blade::render(<<<HTML
-                    <x-custom-button size="xs" color="yellow" href="{{ route('faculty.edit', ['id' => $role->id]) }}">Edit</x-custom-button>
+                    <x-custom-button size="xs" color="yellow" href="{{ route('curriculum-accreditation.edit', ['id' => $role->id]) }}">Edit</x-custom-button>
                     HTML);
                 }),
 
             Button::add('delete')
                 ->slot('Delete')
                 ->id()
-                ->can(allowed: auth()->user()->hasPermissionTo('faculty-profile-delete'))
+                ->can(allowed: auth()->user()->hasPermissionTo('curriculum-delete'))
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('delete:faculty', ['rowId' => $row->id]),
+                ->dispatch('delete:accreditation', ['rowId' => $row->id]),
         ];
     }
 

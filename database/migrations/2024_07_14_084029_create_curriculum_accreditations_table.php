@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('program_id');
             $table->string('status');
+            $table->string('level');
             $table->date('date_visit')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -6,8 +6,63 @@ use App\Models\AcademicRank;
 use Spatie\Permission\Models\Role;
 use App\Models\NatureOfAppointment;
 use App\Models\EducationalAttainment;
+use App\Models\Program;
 
 trait FormOptionTrait {
+    public function statusAccreditationLevelOptions()
+    {
+        return [
+            [
+                'value' => 'Level I',
+                'label' => 'Level I'
+            ],
+            [
+                'value' => 'Level II',
+                'label' => 'Level II'
+            ],
+            [
+                'value' => 'Level III',
+                'label' => 'Level III'
+            ],
+            [
+                'value' => 'Level IV',
+                'label' => 'Level IV'
+            ],
+            [
+                'value' => 'Level V',
+                'label' => 'Level V'
+            ],
+        ];
+    }
+
+    public function statusAccreditationOptions()
+    {
+        return [
+            [
+                'value' => 'Accredited',
+                'label' => 'Accredited'
+            ],
+            [
+                'value' => 'Reaccredited',
+                'label' => 'Reaccredited'
+            ]
+        ];
+    }
+
+    public function statusAcademicOptions()
+    {
+        return [
+            [
+                'value' => 1,
+                'label' => 'With COPC'
+            ],
+            [
+                'value' => 0,
+                'label' => 'Without COPC'
+            ]
+        ];
+    }
+
     public function genderOptions()
     {
         return [
@@ -34,6 +89,21 @@ trait FormOptionTrait {
                 'label' => 'Active'
             ]
         ];
+    }
+
+    public function programOptions($display = 'name')
+    {
+        $programs = Program::all();
+        $options = [];
+
+        foreach($programs as $program) {
+            $options[] = [
+                'value' => $program['id'],
+                'label' => $program[$display]
+            ];
+        }
+
+        return $options;
     }
 
     public function roleOptions()

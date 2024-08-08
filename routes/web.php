@@ -1,6 +1,21 @@
 <?php
 
 use App\Livewire\Curriculum\CurriculumView;
+use App\Livewire\Curriculum\Pages\Academic;
+use App\Livewire\Curriculum\Pages\AcademicCreate;
+use App\Livewire\Curriculum\Pages\AcademicEdit;
+use App\Livewire\Curriculum\Pages\Accreditation;
+use App\Livewire\Curriculum\Pages\AccreditationCreate;
+use App\Livewire\Curriculum\Pages\AccreditationEdit;
+use App\Livewire\Curriculum\Pages\CurriculumNatnlTvet;
+use App\Livewire\Curriculum\Pages\CurriculumNatnlTvetCreate;
+use App\Livewire\Curriculum\Pages\CurriculumNatnlTvetEdit;
+use App\Livewire\Curriculum\Pages\CurriculumNumNatnlTvet;
+use App\Livewire\Curriculum\Pages\CurriculumNumNatnlTvetCreate;
+use App\Livewire\Curriculum\Pages\CurriculumNumNatnlTvetEdit;
+use App\Livewire\Curriculum\Pages\Performance;
+use App\Livewire\Curriculum\Pages\PerformanceCreate;
+use App\Livewire\Curriculum\Pages\PerformanceEdit;
 use App\Livewire\Department\Department;
 use App\Livewire\Department\Pages\Create as DepartmentCreate;
 use App\Livewire\Department\Pages\Edit as DepartmentEdit;
@@ -34,6 +49,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/login');
 });
+
+Route::get('/test', function () {
+    event(new App\Events\NotificationEvent('hello world'));
+    return 'event fired!';
+});
+
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
 ->group(function () {
@@ -79,6 +100,26 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
 
     // Curriculum
     Route::get('/curriculum', CurriculumView::class)->name('curriculum.index');
+
+    Route::get('/curriculum/accreditation', Accreditation::class)->name('curriculum-accreditation.index');
+    Route::get('/curriculum/accreditation/create', AccreditationCreate::class)->name('curriculum-accreditation.create');
+    Route::get('/curriculum/accreditation/edit/{id}', AccreditationEdit::class)->name('curriculum-accreditation.edit');
+
+    Route::get('/curriculum/academic', Academic::class)->name('curriculum-academic.index');
+    Route::get('/curriculum/academic/create', AcademicCreate::class)->name('curriculum-academic.create');
+    Route::get('/curriculum/academic/edit/{id}', AcademicEdit::class)->name('curriculum-academic.edit');
+
+    Route::get('/curriculum/performance', Performance::class)->name('curriculum-performance.index');
+    Route::get('/curriculum/performance/create', PerformanceCreate::class)->name('curriculum-performance.create');
+    Route::get('/curriculum/performance/edit/{id}', PerformanceEdit::class)->name('curriculum-performance.edit');
+
+    Route::get('/curriculum/national-tvet', CurriculumNatnlTvet::class)->name('curriculum-national-tvet.index');
+    Route::get('/curriculum/national-tvet/create', CurriculumNatnlTvetCreate::class)->name('curriculum-national-tvet.create');
+    Route::get('/curriculum/national-tvet/edit/{id}', CurriculumNatnlTvetEdit::class)->name('curriculum-national-tvet.edit');
+
+    Route::get('/curriculum/num-national-tvet', CurriculumNumNatnlTvet::class)->name('curriculum-num-national-tvet.index');
+    Route::get('/curriculum/num-national-tvet/create', CurriculumNumNatnlTvetCreate::class)->name('curriculum-num-national-tvet.create');
+    Route::get('/curriculum/num-national-tvet/edit/{id}', CurriculumNumNatnlTvetEdit::class)->name('curriculum-num-national-tvet.edit');
 
     // Student Profile
     Route::get('/student-profile', StudentProfileView::class)->name('student-profile.index');

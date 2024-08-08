@@ -9,4 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CurriculumAccreditation extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $table = 'curriculum_accreditations';
+    protected $fillable = [
+        'program_id',
+        'level',
+        'status',
+        'date_visit'
+    ];
 }
