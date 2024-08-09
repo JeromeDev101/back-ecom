@@ -42,7 +42,8 @@ class RolesCreate extends Component
         $this->flash('success', 'Successfully Added',[
             'position' => 'center'
         ], 'roles-and-permissions');
-        return redirect('roles-and-permission');
+
+        return $this->redirectRoute('roles-permission.index');
     }
     public function render()
     {

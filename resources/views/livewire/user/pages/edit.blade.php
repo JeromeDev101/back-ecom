@@ -1,5 +1,5 @@
 <div>
-    <x-page-header back="true" link="/users">Create User</x-page-header>
+    <x-page-header back="true" link="/users">Edit User</x-page-header>
 
     <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <form wire:submit.prevent="save">

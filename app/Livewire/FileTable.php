@@ -17,9 +17,11 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
-final class PerformanceTable extends PowerGridComponent
+final class FileTable extends PowerGridComponent
 {
     use WithExport;
+
+    public $tableFilter = '';
 
     public function setUp(): array
     {
@@ -38,18 +40,23 @@ final class PerformanceTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return DB::table('curriculum_performances')->whereNull('curriculum_performances.deleted_at');
+        $tableFilter = $this->tableFilter;
+        return DB::table('curriculum_files')
+                ->when($tableFilter, function($query) use ($tableFilter){
+                    return $query->whereReference($tableFilter);
+                })
+                ->whereNull('curriculum_files.deleted_at');
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('exam_type')
-            ->add('cvsu_passing', fn ($performance) => $performance->cvsu_passing .'%')
-            ->add('natl_passing', fn ($performance) => $performance->natl_passing .'%')
-            ->add('date_held_from_formatted', fn ($model) => Carbon::parse($model->date_held_from)->format('d/m/Y'))
-            ->add('date_held_to_formatted', fn ($model) => Carbon::parse($model->date_held_to)->format('d/m/Y'))
+            ->add('reference')
+            ->add('file_name')
+            ->add('orig_file_name')
+            ->add('path')
+            ->add('banner_text')
             ->add('deleted_at')
             ->add('created_at')
             ->add('updated_at');
@@ -59,15 +66,11 @@ final class PerformanceTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Type of Examination', 'exam_type')
+            Column::make('Filename', 'orig_file_name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('CVSU %', 'cvsu_passing')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Natl %', 'natl_passing')
+            Column::make('Banner text', 'banner_text')
                 ->sortable()
                 ->searchable(),
 
@@ -79,8 +82,6 @@ final class PerformanceTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::datepicker('date_held_from'),
-            Filter::datepicker('date_held_to'),
         ];
     }
 
@@ -93,7 +94,7 @@ final class PerformanceTable extends PowerGridComponent
                 ->can(allowed: auth()->user()->hasPermissionTo('curriculum-update'))
                 ->render(function ($role) {
                     return Blade::render(<<<HTML
-                    <x-custom-button size="xs" color="yellow" href="{{ route('curriculum-performance.edit', ['id' => $role->id]) }}">Edit</x-custom-button>
+                    <x-custom-button size="xs" color="yellow" href="{{ route('curriculum-performance.banner-edit', ['id' => $role->id]) }}">Edit</x-custom-button>
                     HTML);
                 }),
 
@@ -102,7 +103,7 @@ final class PerformanceTable extends PowerGridComponent
                 ->id()
                 ->can(allowed: auth()->user()->hasPermissionTo('curriculum-delete'))
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('delete:performance', ['rowId' => $row->id]),
+                ->dispatch('delete:banner', ['rowId' => $row->id]),
         ];
     }
 

@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CurriculumCertification extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $casts = [
+        'faculty_ids' => 'json',
+    ];
 }

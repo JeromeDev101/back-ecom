@@ -2,11 +2,12 @@
 
 namespace App\Traits;
 
+use App\Models\Faculty;
+use App\Models\Program;
 use App\Models\AcademicRank;
 use Spatie\Permission\Models\Role;
 use App\Models\NatureOfAppointment;
 use App\Models\EducationalAttainment;
-use App\Models\Program;
 
 trait FormOptionTrait {
     public function statusAccreditationLevelOptions()
@@ -33,6 +34,21 @@ trait FormOptionTrait {
                 'label' => 'Level V'
             ],
         ];
+    }
+
+    public function facultyOptions()
+    {
+        $faculties = Faculty::all();
+        $options = [];
+
+        foreach($faculties as $faculty) {
+            $options[] = [
+                'value' => $faculty['id'],
+                'label' => $faculty['last_name']. ', ' . $faculty['first_name']
+            ];
+        }
+
+        return collect($options)->sortBy('label')->toArray();
     }
 
     public function statusAccreditationOptions()

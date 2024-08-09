@@ -7,9 +7,15 @@ use App\Livewire\Curriculum\Pages\AcademicEdit;
 use App\Livewire\Curriculum\Pages\Accreditation;
 use App\Livewire\Curriculum\Pages\AccreditationCreate;
 use App\Livewire\Curriculum\Pages\AccreditationEdit;
+use App\Livewire\Curriculum\Pages\Banner;
+use App\Livewire\Curriculum\Pages\BannerCreate;
+use App\Livewire\Curriculum\Pages\BannerEdit;
 use App\Livewire\Curriculum\Pages\CurriculumNatnlTvet;
 use App\Livewire\Curriculum\Pages\CurriculumNatnlTvetCreate;
 use App\Livewire\Curriculum\Pages\CurriculumNatnlTvetEdit;
+use App\Livewire\Curriculum\Pages\CurriculumNatnlTvetFile;
+use App\Livewire\Curriculum\Pages\CurriculumNatnlTvetFileCreate;
+use App\Livewire\Curriculum\Pages\CurriculumNatnlTvetFileEdit;
 use App\Livewire\Curriculum\Pages\CurriculumNumNatnlTvet;
 use App\Livewire\Curriculum\Pages\CurriculumNumNatnlTvetCreate;
 use App\Livewire\Curriculum\Pages\CurriculumNumNatnlTvetEdit;
@@ -36,6 +42,7 @@ use App\Livewire\Program\Pages\Edit as ProgramEdit;
 use App\Livewire\ResearchExtension\ResearchExtensionView;
 use App\Livewire\RolesPermission\PermissionsCreate;
 use App\Livewire\RolesPermission\PermissionsEdit;
+use App\Livewire\RolesPermission\PermissionView;
 use App\Livewire\RolesPermission\RolesCreate;
 use App\Livewire\RolesPermission\RolesEdit;
 use App\Livewire\RolesPermission\RolesPermissionView;
@@ -87,9 +94,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/products/edit/{id}', ProductEdit::class)->name('products.edit');
 
     // Roles and Permission
-    Route::get('/roles-and-permission', RolesPermissionView::class)->name('roles-permission.index');
+    Route::get('/roles-and-permission/role', RolesPermissionView::class)->name('roles-permission.index');
     Route::get('/roles-and-permission/role/create', RolesCreate::class)->name('roles.create');
     Route::get('/roles-and-permission/role/edit/{id}', RolesEdit::class)->name('roles.edit');
+    Route::get('/roles-and-permission/permission', PermissionView::class)->name('permissions.index');
     Route::get('/roles-and-permission/permission/create', PermissionsCreate::class)->name('permissions.create');
     Route::get('/roles-and-permission/permission/edit/{id}', PermissionsEdit::class)->name('permissions.edit');
 
@@ -112,10 +120,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/curriculum/performance', Performance::class)->name('curriculum-performance.index');
     Route::get('/curriculum/performance/create', PerformanceCreate::class)->name('curriculum-performance.create');
     Route::get('/curriculum/performance/edit/{id}', PerformanceEdit::class)->name('curriculum-performance.edit');
+    Route::get('/curriculum/performance/banner', Banner::class)->name('curriculum-performance.banner');
+    Route::get('/curriculum/performance/banner/create', BannerCreate::class)->name('curriculum-performance.banner-create');
+    Route::get('/curriculum/performance/banner/edit/{id}', BannerEdit::class)->name('curriculum-performance.banner-edit');
 
     Route::get('/curriculum/national-tvet', CurriculumNatnlTvet::class)->name('curriculum-national-tvet.index');
     Route::get('/curriculum/national-tvet/create', CurriculumNatnlTvetCreate::class)->name('curriculum-national-tvet.create');
     Route::get('/curriculum/national-tvet/edit/{id}', CurriculumNatnlTvetEdit::class)->name('curriculum-national-tvet.edit');
+    Route::get('/curriculum/national-tvet/certificate-files', CurriculumNatnlTvetFile::class)->name('curriculum-national-tvet.file');
+    Route::get('/curriculum/national-tvet/certificate-files/create', CurriculumNatnlTvetFileCreate::class)->name('curriculum-national-tvet.file-create');
+    Route::get('/curriculum/national-tvet/certificate-files/edit/{id}', CurriculumNatnlTvetFileEdit::class)->name('curriculum-national-tvet.file-edit');
 
     Route::get('/curriculum/num-national-tvet', CurriculumNumNatnlTvet::class)->name('curriculum-num-national-tvet.index');
     Route::get('/curriculum/num-national-tvet/create', CurriculumNumNatnlTvetCreate::class)->name('curriculum-num-national-tvet.create');

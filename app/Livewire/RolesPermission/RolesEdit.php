@@ -48,7 +48,7 @@ class RolesEdit extends Component
             'position' => 'center'
         ], 'roles-and-permissions');
 
-        return redirect('roles-and-permission');
+        return $this->redirectRoute('roles-permission.index');
     }
     public function render()
     {

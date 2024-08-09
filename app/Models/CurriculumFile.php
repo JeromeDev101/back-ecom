@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CurriculumFile extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $casts = [
+        'file_name' => 'json',
+    ];
 }

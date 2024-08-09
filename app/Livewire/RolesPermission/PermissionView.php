@@ -3,49 +3,44 @@
 namespace App\Livewire\RolesPermission;
 
 use Livewire\Component;
-use App\Models\Role\Role;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
+use Spatie\Permission\Models\Permission;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 #[Title('CEIT | Roles and Permission')]
-class RolesPermissionView extends Component
+class PermissionView extends Component
 {
     use LivewireAlert;
 
-    public $roleId;
-    public $activeTab = 'roles';
+    public $permissionId;
 
     protected $listeners = [
         'confirmed',
         'cancelled'
     ];
 
-    #[On('delete:roles')]
-    public function deleteRole($rowId): void
+    #[On('delete:permission')]
+    public function deletePermission($rowId): void
     {
         $this->confirm('Are you sure do want to delete?', [
             'onConfirmed' => 'confirmed',
             'onDismissed' => 'cancelled'
         ]);
 
-        $this->roleId = $rowId;
+        $this->permissionId = $rowId;
     }
 
     public function confirmed()
     {
-        $role = Role::find($this->role_id);
-        $role->delete();
+        $permission = Permission::find($this->permissionId);
+        $permission->delete();
 
         $this->flash('success', 'Successfully Deleted', [], 'roles-and-permission');
     }
 
-    public function cancelled()
-    {
-        return $this->redirect('roles-and-permission');
-    }
     public function render()
     {
-        return view('livewire.roles-permission.roles-permission-view');
+        return view('livewire.roles-permission.permission-view');
     }
 }

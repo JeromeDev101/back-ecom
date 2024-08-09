@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Carbon;
 use Livewire\WithFileUploads;
 
 trait FileUploadTrait {
