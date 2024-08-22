@@ -113,19 +113,75 @@
 
                 </li>
 
-
-
                 <li>
-                    <a href="{{ route('student-profile.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('student-profile.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group" >
+                    <button type="button" class="flex items-center w-full p-2 transition duration-75 rounded-lg group dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700"
+                        aria-controls="student-profile" data-collapse-toggle="student-profile" >
+
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
                         </svg>
 
-                        <span class="ms-3">Student Profile</span>
-                    </a>
+                        <span class="flex-1 text-left ms-3 rtl:text-right whitespace-nowrap">Student Profile</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                        </svg>
+                    </button>
+
+                    <ul id="student-profile" class="{{
+                            request()->is('student-profile/enrolments') ||
+                            request()->is('student-profile/enrolments/*') ||
+                            request()->is('student-profile/graduates') ||
+                            request()->is('student-profile/graduates/*') ||
+                            request()->is('student-profile/scholarship') ||
+                            request()->is('student-profile/scholarship/*') ||
+                            request()->is('student-profile/foreign-student') ||
+                            request()->is('student-profile/foreign-student/*') ||
+                            request()->is('student-profile/recognition-and-awards') ||
+                            request()->is('student-profile/recognition-and-awards/*')
+                            ? '' : 'hidden'
+                        }} py-2 space-y-2">
+                          <li>
+                             <a href="{{ route('enrollment.index') }}" wire:navigate class="group flex items-center p-2
+                                {{
+                                    request()->is('student-profile/enrolments') || request()->is('student-profile/enrolments/*')
+                                    ? 'text-green-50 bg-green-500' : ''
+                                }}
+                                transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Enrolment</a>
+                          </li>
+                          <li>
+                             <a href="{{ route('graduates.index') }}" wire:navigate class="group flex items-center p-2
+                                {{
+                                    request()->is('student-profile/graduates') || request()->is('student-profile/graduates/*')
+                                    ? 'text-green-50 bg-green-500' : ''
+                                }}
+                                transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Graduates</a>
+                          </li>
+                          <li>
+                            <a href="{{ route('foreign.index') }}" wire:navigate class="group flex items-center p-2
+                               {{
+                                   request()->is('student-profile/foreign-student') || request()->is('student-profile/foreign-student/*')
+                                   ? 'text-green-50 bg-green-500' : ''
+                               }}
+                               transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Foreign Students</a>
+                         </li>
+                         <li>
+                            <a href="{{ route('scholarship.index') }}" wire:navigate class="group flex items-center p-2
+                               {{
+                                   request()->is('student-profile/scholarship') || request()->is('student-profile/scholarship/*')
+                                   ? 'text-green-50 bg-green-500' : ''
+                               }}
+                               transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Scholarship</a>
+                         </li>
+                         <li>
+                            <a href="{{ route('awards.index') }}" wire:navigate class="group flex items-center p-2
+                               {{
+                                   request()->is('student-profile/recognition-and-awards') || request()->is('student-profile/recognition-and-awards/*')
+                                   ? 'text-green-50 bg-green-500' : ''
+                               }}
+                               transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Recognition and Awards</a>
+                         </li>
+                    </ul>
                 </li>
-
-
 
                 <li>
                     <a href="{{ route('faculty-staff.index') }}" wire:navigate class="group flex items-center p-2 {{ request()->routeIs('faculty-staff.index') ? 'text-green-50 bg-green-500' : ''}}  rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">

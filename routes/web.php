@@ -48,6 +48,21 @@ use App\Livewire\RolesPermission\RolesCreate;
 use App\Livewire\RolesPermission\RolesEdit;
 use App\Livewire\RolesPermission\RolesPermissionView;
 use App\Livewire\StudentDevelopment\StudentDevelopmentView;
+use App\Livewire\StudentProfile\Pages\Awards;
+use App\Livewire\StudentProfile\Pages\AwardsCreate;
+use App\Livewire\StudentProfile\Pages\AwardsEdit;
+use App\Livewire\StudentProfile\Pages\Enrollment;
+use App\Livewire\StudentProfile\Pages\EnrollmentCreate;
+use App\Livewire\StudentProfile\Pages\EnrollmentEdit;
+use App\Livewire\StudentProfile\Pages\Foreign;
+use App\Livewire\StudentProfile\Pages\ForeignCreate;
+use App\Livewire\StudentProfile\Pages\ForeignEdit;
+use App\Livewire\StudentProfile\Pages\Graduates;
+use App\Livewire\StudentProfile\Pages\GraduatesCreate;
+use App\Livewire\StudentProfile\Pages\GraduatesEdit;
+use App\Livewire\StudentProfile\Pages\Scholarship;
+use App\Livewire\StudentProfile\Pages\ScholarshipCreate;
+use App\Livewire\StudentProfile\Pages\ScholarshipEdit;
 use App\Livewire\StudentProfile\StudentProfileView;
 use App\Livewire\User\User;
 use App\Livewire\User\Pages\Create as UserCreate;
@@ -151,7 +166,33 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/curriculum/num-national-tvet/edit/{id}', CurriculumNumNatnlTvetEdit::class)->name('curriculum-num-national-tvet.edit');
 
     // Student Profile
-    Route::get('/student-profile', StudentProfileView::class)->name('student-profile.index');
+    Route::prefix('student-profile')->group(function() {
+
+        // Enrolment
+        Route::get('/enrolments', Enrollment::class)->name('enrollment.index');
+        Route::get('/enrolments/create', EnrollmentCreate::class)->name('enrollment.create');
+        Route::get('/enrolments/edit/{id}', EnrollmentEdit::class)->name('enrollment.edit');
+
+        // Graduates
+        Route::get('/graduates', Graduates::class)->name('graduates.index');
+        Route::get('/graduates/create', GraduatesCreate::class)->name('graduates.create');
+        Route::get('/graduates/edit/{id}', GraduatesEdit::class)->name('graduates.edit');
+
+        // Scholarship
+        Route::get('/scholarship', Scholarship::class)->name('scholarship.index');
+        Route::get('/scholarship/create', ScholarshipCreate::class)->name('scholarship.create');
+        Route::get('/scholarship/edit/{id}', ScholarshipEdit::class)->name('scholarship.edit');
+
+        // Foreign
+        Route::get('/foreign-student', Foreign::class)->name('foreign.index');
+        Route::get('/foreign-student/create', ForeignCreate::class)->name('foreign.create');
+        Route::get('/foreign-student/edit/{id}', ForeignEdit::class)->name('foreign.edit');
+
+        // Awards
+        Route::get('/recognition-and-awards', Awards::class)->name('awards.index');
+        Route::get('/recognition-and-awards/create', AwardsCreate::class)->name('awards.create');
+        Route::get('/recognition-and-awards/edit/{id}', AwardsEdit::class)->name('awards.edit');
+    });
 
     // Faculty and Staff
     Route::get('/faculty-and-staff', FacultyStaffView::class)->name('faculty-staff.index');
