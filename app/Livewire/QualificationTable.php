@@ -17,11 +17,9 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
-final class FileTable extends PowerGridComponent
+final class QualificationTable extends PowerGridComponent
 {
     use WithExport;
-
-    public $tableFilter = '';
 
     public function setUp(): array
     {
@@ -40,23 +38,15 @@ final class FileTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        $tableFilter = $this->tableFilter;
-        return DB::table('curriculum_files')
-                ->when($tableFilter, function($query) use ($tableFilter){
-                    return $query->whereReference($tableFilter);
-                })
-                ->whereNull('curriculum_files.deleted_at');
+        return DB::table('curriculum_certification_students');
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('reference')
-            ->add('file_name')
-            ->add('orig_file_name')
-            ->add('path')
-            ->add('banner_text')
+            ->add('certification_type')
+            ->add('num_student')
             ->add('deleted_at')
             ->add('created_at')
             ->add('updated_at');
@@ -66,14 +56,13 @@ final class FileTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Filename', 'orig_file_name')
+            Column::make('Certification type', 'certification_type')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Banner text', 'banner_text')
+            Column::make('Num student', 'num_student')
                 ->sortable()
                 ->searchable(),
-
             Column::action('Action')
 
         ];
@@ -85,27 +74,22 @@ final class FileTable extends PowerGridComponent
         ];
     }
 
+    #[\Livewire\Attributes\On('edit')]
+    public function edit($rowId): void
+    {
+        $this->js('alert('.$rowId.')');
+    }
+
     public function actions($row): array
     {
-
         return [
             Button::add('edit')
                 ->slot('Edit')
                 ->id()
                 ->can(allowed: auth()->user()->hasPermissionTo('curriculum-update'))
                 ->render(function ($role) {
-
-                    $type = $this->tableFilter;
-
-                    $redirect = '';
-                    if($type == 'CERTIFICATES') {
-                        $redirect = 'curriculum-national-tvet.file-edit';
-                    } elseif ($type == 'CURRICULUM'){
-                        $redirect = 'curriculum-performance.banner-edit';
-                    }
-
                     return Blade::render(<<<HTML
-                    <x-custom-button size="xs" color="yellow" href="{{ route('$redirect', ['id' => $role->id]) }}">Edit</x-custom-button>
+                    <x-custom-button size="xs" color="yellow" href="{{ route('curriculum-num-national-tvet.edit', ['id' => $role->id]) }}">Edit</x-custom-button>
                     HTML);
                 }),
 
@@ -114,7 +98,7 @@ final class FileTable extends PowerGridComponent
                 ->id()
                 ->can(allowed: auth()->user()->hasPermissionTo('curriculum-delete'))
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('delete:banner', ['rowId' => $row->id]),
+                ->dispatch('delete:qualification', ['rowId' => $row->id]),
         ];
     }
 

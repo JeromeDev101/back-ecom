@@ -20,6 +20,6 @@
     </div>
 
 
-    <x-custom-button size="sm" color="green" href="{{route('curriculum-performance.banner-create')}}">Create</x-custom-button>
+    <x-custom-button size="sm" color="green" href="{{route('curriculum-national-tvet.file-create')}}">Create</x-custom-button>
     <livewire:file-table :tableFilter="$tableFilter" />
 </div>

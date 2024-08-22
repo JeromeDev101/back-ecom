@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 #[Lazy()]
-#[Title('CEIT | Curriculum - National TVET')]
+#[Title('CEIT | Curriculum - Faculty National TVET')]
 class CurriculumNatnlTvet extends Component
 {
     use LivewireAlert;
@@ -37,7 +37,7 @@ class CurriculumNatnlTvet extends Component
         $cert = CurriculumCertification::find($this->id);
         $cert->delete();
 
-        $this->flash('success', 'Successfully Deleted', [], 'curriculum/performance/banner');
+        $this->flash('success', 'Successfully Deleted', [], 'curriculum/num-national-tvet');
     }
 
     public function render()

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PdfController;
 use App\Livewire\Curriculum\CurriculumView;
 use App\Livewire\Curriculum\Pages\Academic;
 use App\Livewire\Curriculum\Pages\AcademicCreate;
@@ -60,6 +61,20 @@ Route::get('/', function () {
 Route::get('/test', function () {
     event(new App\Events\NotificationEvent('hello world'));
     return 'event fired!';
+});
+
+// PDF templates
+Route::prefix('pdf')->group(function() {
+    Route::get('/curriculum-accreditation', [ PdfController::class, 'curriculumAccreditation']);
+    Route::get('/curriculum-academic', [ PdfController::class, 'curriculumAcademic']);
+    Route::get('/curriculum-performance', [ PdfController::class, 'curriculumPerformance']);
+    Route::get('/curriculum-certification', [ PdfController::class, 'curriculumCertification']);
+    Route::get('/curriculum-student-qualification', [ PdfController::class, 'curriculumQualification']);
+
+    Route::get('/student-profile-enrollment', [ PdfController::class, 'studentEnrollment']);
+    Route::get('/student-profile-graduates', [ PdfController::class, 'studentGraduates']);
+    Route::get('/student-profile-scholarship', [ PdfController::class, 'studentScholarship']);
+    Route::get('/student-profile-awards', [ PdfController::class, 'studentAwards']);
 });
 
 

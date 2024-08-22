@@ -44,18 +44,18 @@ class BannerEdit extends Component
     {
         $this->validate();
 
-        $filename = $this->uploadFile($this->newFile, 'images/curriculum/banner');
-
         $file = CurriculumFile::find($this->id);
         if($file) {
             $file->reference = 'CURRICULUM';
-            $file->file_name = $filename;
             $file->orig_file_name = $this->newFile->getClientOriginalName();
             $file->banner_text = $this->files['banner_text'];
-            $file->path = $filename['path'];
+            if($this->newFile) {
+                $filename = $this->uploadFile($this->newFile, 'images/curriculum/banner');
+                $file->file_name = $filename;
+                $file->path = $filename['path'];
+            }
             $file->save();
         }
-
 
         $this->flash('success', 'Successfully Updated',[
             'position' => 'center'

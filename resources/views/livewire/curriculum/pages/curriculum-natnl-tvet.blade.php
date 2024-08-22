@@ -1,7 +1,7 @@
 <div>
     <x-page-header history="{{ route('curriculum.index') }}" :previous="true">
         <x-slot name="name">Curriculum</x-slot>
-        Qualification and Certification
+        Faculty Qualification and Certification
     </x-page-header>
 
     <div class="mb-5 border-b border-gray-200 dark:border-gray-700">
