@@ -65,7 +65,6 @@ final class FileTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
             Column::make('Filename', 'orig_file_name')
                 ->sortable()
                 ->searchable(),
@@ -87,6 +86,16 @@ final class FileTable extends PowerGridComponent
 
     public function actions($row): array
     {
+        $type = $this->tableFilter;
+
+        $dispatch_name = '';
+        if($type == 'CERTIFICATES') {
+            $dispatch_name = 'delete:national-tvet';
+        } elseif ($type == 'CURRICULUM'){
+            $dispatch_name = 'delete:banner';
+        } elseif ($type == 'RECOGNITION'){
+            $dispatch_name = 'delete:recognition-photo';
+        }
 
         return [
             Button::add('edit')
@@ -102,6 +111,8 @@ final class FileTable extends PowerGridComponent
                         $redirect = 'curriculum-national-tvet.file-edit';
                     } elseif ($type == 'CURRICULUM'){
                         $redirect = 'curriculum-performance.banner-edit';
+                    } elseif ($type == 'RECOGNITION'){
+                        $redirect = 'awards-photo.edit';
                     }
 
                     return Blade::render(<<<HTML
@@ -114,7 +125,7 @@ final class FileTable extends PowerGridComponent
                 ->id()
                 ->can(allowed: auth()->user()->hasPermissionTo('curriculum-delete'))
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('delete:banner', ['rowId' => $row->id]),
+                ->dispatch($dispatch_name, ['rowId' => $row->id]),
         ];
     }
 

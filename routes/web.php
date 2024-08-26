@@ -51,6 +51,9 @@ use App\Livewire\StudentDevelopment\StudentDevelopmentView;
 use App\Livewire\StudentProfile\Pages\Awards;
 use App\Livewire\StudentProfile\Pages\AwardsCreate;
 use App\Livewire\StudentProfile\Pages\AwardsEdit;
+use App\Livewire\StudentProfile\Pages\AwardsPhoto;
+use App\Livewire\StudentProfile\Pages\AwardsPhotoCreate;
+use App\Livewire\StudentProfile\Pages\AwardsPhotoEdit;
 use App\Livewire\StudentProfile\Pages\Enrollment;
 use App\Livewire\StudentProfile\Pages\EnrollmentCreate;
 use App\Livewire\StudentProfile\Pages\EnrollmentEdit;
@@ -192,6 +195,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
         Route::get('/recognition-and-awards', Awards::class)->name('awards.index');
         Route::get('/recognition-and-awards/create', AwardsCreate::class)->name('awards.create');
         Route::get('/recognition-and-awards/edit/{id}', AwardsEdit::class)->name('awards.edit');
+        Route::get('/recognition-and-awards/photos', AwardsPhoto::class)->name('awards-photo.index');
+        Route::get('/recognition-and-awards/photos/create', AwardsPhotoCreate::class)->name('awards-photo.create');
+        Route::get('/recognition-and-awards/photos/edit/{id}', AwardsPhotoEdit::class)->name('awards-photo.edit');
     });
 
     // Faculty and Staff

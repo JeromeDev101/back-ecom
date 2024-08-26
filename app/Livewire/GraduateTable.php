@@ -60,7 +60,6 @@ final class GraduateTable extends PowerGridComponent
             ->add('graduation_date', fn ($foreign) => Carbon::parse($foreign->graduation_date)->format('F j, Y'))
             ->add('sy', fn ($foreign) => $foreign->sy1.'-'.$foreign->sy2)
             ->add('semester', fn ($student) => $student->semester == '1' ? '1st':'2nd')
-            ->add('semester')
             ->add('deleted_at')
             ->add('created_at')
             ->add('updated_at');
@@ -97,15 +96,7 @@ final class GraduateTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
-            Filter::datepicker('graduation_date'),
-        ];
-    }
-
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
-    {
-        $this->js('alert('.$rowId.')');
+        return [];
     }
 
     public function actions($row): array

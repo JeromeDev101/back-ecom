@@ -60,7 +60,12 @@
                     <div>
                         <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                        @if(auth()->user()->profile_photo_path)
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('storage/'. auth()->user()->profile_photo_path)}}" alt="user photo">
+                        @else
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('images/user.jpg')}}" alt="user photo">
+                        @endif
+
                         </button>
                     </div>
 

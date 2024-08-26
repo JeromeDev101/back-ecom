@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Models\Faculty;
 use App\Models\Program;
 use App\Models\AcademicRank;
+use App\Models\Country;
 use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Role;
 use App\Models\NatureOfAppointment;
@@ -230,6 +231,21 @@ trait FormOptionTrait {
         }
 
         return $options;
+    }
+
+    public function countryOptions()
+    {
+        $countries = Country::all();
+        $options = [];
+
+        foreach($countries as $country) {
+            $options[] = [
+                'value' => $country['id'],
+                'label' => $country['name']
+            ];
+        }
+
+        return collect($options)->sortBy('label')->toArray();
     }
 
     public function academicOptions()

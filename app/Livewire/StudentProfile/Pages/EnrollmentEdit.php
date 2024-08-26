@@ -33,6 +33,7 @@ class EnrollmentEdit extends Component
                 'opt2' => '',
             ];
         }
+
         $this->semesterOptions = $this->semesterOptions();
         $this->yearOptions = $this->yearOptions();
         $this->programOptions = $this->programOptions();

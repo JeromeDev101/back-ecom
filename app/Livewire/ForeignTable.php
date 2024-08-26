@@ -103,12 +103,6 @@ final class ForeignTable extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
-    {
-        $this->js('alert('.$rowId.')');
-    }
-
     public function actions($row): array
     {
         return [
@@ -127,7 +121,7 @@ final class ForeignTable extends PowerGridComponent
                 ->id()
                 ->can(allowed: auth()->user()->hasPermissionTo('student-profile-delete'))
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('delete:enrolment', ['rowId' => $row->id]),
+                ->dispatch('delete:foreign', ['rowId' => $row->id]),
         ];
 
     }

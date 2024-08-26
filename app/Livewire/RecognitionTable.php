@@ -2,19 +2,20 @@
 
 namespace App\Livewire;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Database\Query\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
 final class RecognitionTable extends PowerGridComponent
 {
@@ -37,7 +38,15 @@ final class RecognitionTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return DB::table('student_recognitions');
+        $columns = [
+            'student_recognitions.*',
+            'programs.name as program_name'
+        ];
+
+        return DB::table('student_recognitions')
+            ->select($columns)
+            ->leftJoin('programs', 'student_recognitions.program_id', '=', 'programs.id')
+            ->whereNull('student_recognitions.deleted_at');
     }
 
     public function fields(): PowerGridFields
@@ -78,55 +87,39 @@ final class RecognitionTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Program id', 'program_id')
+            Column::make('Program', 'program_name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Deleted at', 'deleted_at_formatted', 'deleted_at')
-                ->sortable(),
-
-            Column::make('Deleted at', 'deleted_at')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
-
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Updated at', 'updated_at_formatted', 'updated_at')
-                ->sortable(),
-
-            Column::make('Updated at', 'updated_at')
-                ->sortable()
-                ->searchable(),
+            Column::action('Action'),
 
         ];
     }
 
     public function filters(): array
     {
-        return [
-            Filter::datepicker('date_awarded'),
-        ];
-    }
-
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
-    {
-        $this->js('alert('.$rowId.')');
+        return [];
     }
 
     public function actions($row): array
     {
         return [
             Button::add('edit')
-                ->slot('Edit: '.$row->id)
+                ->slot('Edit')
                 ->id()
+                ->can(allowed: auth()->user()->hasPermissionTo('student-profile-update'))
+                ->render(function ($role) {
+                    return Blade::render(<<<HTML
+                    <x-custom-button size="xs" color="yellow" href="{{ route('awards.edit', ['id' => $role->id]) }}">Edit</x-custom-button>
+                    HTML);
+                }),
+
+            Button::add('delete')
+                ->slot('Delete')
+                ->id()
+                ->can(allowed: auth()->user()->hasPermissionTo('student-profile-delete'))
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->dispatch('delete:recognition', ['rowId' => $row->id]),
         ];
     }
 
