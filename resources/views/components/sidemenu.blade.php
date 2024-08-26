@@ -146,7 +146,7 @@
                                     request()->is('student-profile/enrolments') || request()->is('student-profile/enrolments/*')
                                     ? 'text-green-50 bg-green-500' : ''
                                 }}
-                                transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Enrolment</a>
+                                transition duration-75 pl-11 rounded-lg dark:text-white hover:bg-green-400 hover:text-green-50 dark:hover:bg-gray-700 group">Enrollment</a>
                           </li>
                           <li>
                              <a href="{{ route('graduates.index') }}" wire:navigate class="group flex items-center p-2

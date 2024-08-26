@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Models\Faculty;
 use App\Models\Program;
 use App\Models\AcademicRank;
+use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Role;
 use App\Models\NatureOfAppointment;
 use App\Models\EducationalAttainment;
@@ -34,6 +35,36 @@ trait FormOptionTrait {
                 'label' => 'Level V'
             ],
         ];
+    }
+
+    public function semesterOptions()
+    {
+        return [
+            [
+                'label' => '1st Semester',
+                'value' => '1',
+            ],
+            [
+                'label' => '2nd Semester',
+                'value' => '2',
+            ],
+        ];
+    }
+
+    public function yearOptions($range = 10)
+    {
+        $options = [];
+        $currentYear = Carbon::now()->year;
+
+        for ($i = 0; $i < $range; $i++) {
+            $years[] = $currentYear - $i;
+            $options[] = [
+                'label' => $currentYear - $i,
+                'value' => $currentYear - $i
+            ];
+        }
+
+        return $options;
     }
 
     public function facultyOptions()
@@ -104,6 +135,40 @@ trait FormOptionTrait {
                 'value' => 1,
                 'label' => 'Active'
             ]
+        ];
+    }
+
+    public function awardTypeOptions()
+    {
+        return [
+            [
+                'label' => 'Champion',
+                'value' => 'Champion',
+            ],
+            [
+                'label' => 'Gold Medalist',
+                'value' => 'Gold Medalist',
+            ],
+            [
+                'label' => 'Silver Medalist',
+                'value' => 'Silver Medalist',
+            ],
+            [
+                'label' => 'Bronze Medalist',
+                'value' => 'Bronze Medalist',
+            ],
+            [
+                'label' => '1st Place',
+                'value' => '1st Place',
+            ],
+            [
+                'label' => '2nd Place',
+                'value' => '2nd Place',
+            ],
+            [
+                'label' => '3rd Place',
+                'value' => '3rd Place',
+            ],
         ];
     }
 
