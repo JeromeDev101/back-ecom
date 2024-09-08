@@ -34,16 +34,17 @@ class RolesPermissionView extends Component
 
     public function confirmed()
     {
-        $role = Role::find($this->role_id);
+        $role = Role::find($this->roleId);
         $role->delete();
 
-        $this->flash('success', 'Successfully Deleted', [], 'roles-and-permission');
+        $this->flash('success', 'Successfully Deleted', [], route('roles-permission.index'));
     }
 
     public function cancelled()
     {
-        return $this->redirect('roles-and-permission');
+        return $this->redirectRoute('roles-permission.index');
     }
+
     public function render()
     {
         return view('livewire.roles-permission.roles-permission-view');

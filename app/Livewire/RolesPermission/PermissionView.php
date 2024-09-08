@@ -36,7 +36,12 @@ class PermissionView extends Component
         $permission = Permission::find($this->permissionId);
         $permission->delete();
 
-        $this->flash('success', 'Successfully Deleted', [], 'roles-and-permission');
+        $this->flash('success', 'Successfully Deleted', [], route('permissions.index'));
+    }
+
+    public function cancelled()
+    {
+        return $this->redirectRoute('permissions.index');
     }
 
     public function render()
