@@ -14,6 +14,7 @@
             width: '100%',
             placeholder: "Select an option",
             allowClear: true,
+            tags: $wire.isTag,
         }).on('change', function() {
             let data = $(this).val()
             $wire.set('value', data)

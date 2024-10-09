@@ -2,6 +2,7 @@
 
 namespace App\Livewire\RolesPermission;
 
+use App\Traits\FormOptionTrait;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Lazy;
@@ -14,15 +15,22 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class PermissionsCreate extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, FormOptionTrait;
 
     public $name;
     public $temp_name;
+    public $permissionOptions = [];
+
+    public function mount()
+    {
+        $this->permissionOptions = $this->permissionOptions();
+    }
 
     public function rules()
     {
         return [
             'name' => 'required|min:3|unique:roles,name',
+            'group_name' => 'required',
         ];
     }
 
@@ -37,6 +45,7 @@ class PermissionsCreate extends Component
             'name.unique' => 'The Permission name already existed',
             'name.required' => 'The Permission name is required',
             'name.min' => 'The Permission name has a minimum of 3 characters',
+            'group_name.required' => 'The Group name is required',
         ];
     }
 

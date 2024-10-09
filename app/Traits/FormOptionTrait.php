@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Role;
 use App\Models\NatureOfAppointment;
 use App\Models\EducationalAttainment;
+use Spatie\Permission\Models\Permission;
 
 trait FormOptionTrait {
     public function statusAccreditationLevelOptions()
@@ -197,6 +198,21 @@ trait FormOptionTrait {
             $options[] = [
                 'value' => $role['name'],
                 'label' => $role['name']
+            ];
+        }
+
+        return $options;
+    }
+
+    public function permissionOptions()
+    {
+        $permissions = Permission::all();
+        $options = [];
+
+        foreach($permissions as $permission) {
+            $options[] = [
+                'value' => $permission['name'],
+                'label' => $permission['name']
             ];
         }
 

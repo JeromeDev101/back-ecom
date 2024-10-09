@@ -22,8 +22,18 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'role' => ['required', Rule::in(['Administrator', 'Dean', 'Chairperson', 'Faculty'])],
+            'role' => [
+                'required',
+                Rule::in(['Administrator', 'Dean', 'Chairperson', 'Faculty']),
+                // Custom validation rule for Administrator role
+                function ($attribute, $value, $fail) {
+                    if ($value === 'Administrator' && User::role('Administrator')->exists()) {
+                        $fail('An Administrator is already registered.');
+                    }
+                },
+            ],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'program_id' => ['required_unless:role,Administrator'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
@@ -31,6 +41,7 @@ class CreateNewUser implements CreatesNewUsers
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
+            'program_id' => $input['program_id'] ?? null,
             'password' => Hash::make($input['password']),
         ]);
 

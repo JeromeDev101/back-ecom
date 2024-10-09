@@ -9,6 +9,7 @@ class SelectOption extends Component
 {
     #[Modelable]
     public $value = '';
+    public $isTag = false;
 
     public array $options;
 

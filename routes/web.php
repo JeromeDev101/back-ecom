@@ -44,7 +44,6 @@ use App\Livewire\ResearchExtension\ResearchExtensionView;
 use App\Livewire\RolesPermission\PermissionsCreate;
 use App\Livewire\RolesPermission\PermissionsEdit;
 use App\Livewire\RolesPermission\PermissionView;
-use App\Livewire\RolesPermission\RolesCreate;
 use App\Livewire\RolesPermission\RolesEdit;
 use App\Livewire\RolesPermission\RolesPermissionView;
 use App\Livewire\StudentDevelopment\StudentDevelopmentView;
@@ -128,7 +127,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
 
     // Roles and Permission
     Route::get('/roles-and-permission/role', RolesPermissionView::class)->name('roles-permission.index');
-    Route::get('/roles-and-permission/role/create', RolesCreate::class)->name('roles.create');
     Route::get('/roles-and-permission/role/edit/{id}', RolesEdit::class)->name('roles.edit');
     Route::get('/roles-and-permission/permission', PermissionView::class)->name('permissions.index');
     Route::get('/roles-and-permission/permission/create', PermissionsCreate::class)->name('permissions.create');

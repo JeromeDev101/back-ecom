@@ -16,7 +16,6 @@
         </ul>
     </div>
 
-    <x-custom-button size="sm" color="green" href="{{route('roles.create')}}">Add Role</x-custom-button>
     <livewire:roles-table/>
 
 </div>

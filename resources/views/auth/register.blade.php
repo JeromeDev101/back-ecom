@@ -7,6 +7,24 @@
                         Register your account
                     </h1>
 
+                    @php
+                        $RolesOptions = [];
+                        $DepartmentOptions = [];
+                        foreach (Spatie\Permission\Models\Role::get() as $role) {
+                            $RolesOptions[] = [
+                                'value' => $role->name,
+                                'label' => $role->name,
+                            ];
+                        }
+
+                        foreach (App\Models\Program::orderBy('name')->get() as $program) {
+                            $DepartmentOptions[] = [
+                                'value' => $program->id,
+                                'label' => $program->name,
+                            ];
+                        }
+                    @endphp
+
                     <x-validation-errors class="mb-4" />
 
                     <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}">
@@ -22,16 +40,11 @@
                         </div>
                         <div>
                             <label for="role">Role</label>
-                            @php
-                                $options = [];
-                                foreach (Spatie\Permission\Models\Role::get() as $role) {
-                                    $options[] = [
-                                        'value' => $role->name,
-                                        'label' => $role->name,
-                                    ];
-                                }
-                            @endphp
-                            <x-select name="role" id="role" :options="$options" />
+                            <x-select name="role" id="role" :options="$RolesOptions" />
+                        </div>
+                        <div>
+                            <label for="role">Department</label>
+                            <x-select name="role" id="program_id" :options="$DepartmentOptions" />
                         </div>
                         <div>
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
